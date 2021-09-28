@@ -1,0 +1,11 @@
+{
+  "name": "test28092021",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "dev": "npx http-server --cors"
+  },
+  "author": "",
+  "license": "ISC"
+}

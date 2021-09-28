@@ -1,0 +1,23 @@
+<html>
+  <head></head>
+  <body>
+    <h1>Test</h1>
+  </body>
+  <script>
+    (async () => {
+      const link = "http://192.168.1.60:8080/test.json";
+      const response = await fetch(link);
+      const text = await response.text();
+      const regExpr = /{_time: (.+), CPU: (.+), MEM: (.+)}/gm;
+      const chunks = text.split("\\n");
+      const parsedChunks = chunks // all the points in the { time: ..., cpu: ..., mem: ...} format
+        .map(chunk => regExpr.exec(chunk))
+        .map(chunk => chunk && ({
+          time: chunk[1],
+          cpu: chunk[2],
+          mem: chunk[3]
+        }))
+        .filter(el => !!el);
+    })();
+  </script>
+</html>
